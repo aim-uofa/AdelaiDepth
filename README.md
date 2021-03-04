@@ -11,9 +11,3 @@ Click to check the video:
 [video 3](https://user-images.githubusercontent.com/7692314/109900857-f256da80-7ce7-11eb-9693-3eedb581f7d1.mov)
 
 [![](http://img.youtube.com/vi/UuT5_GK_TWk/0.jpg)](http://www.youtube.com/watch?v=UuT5_GK_TWk "Learning to recover 3D shape from single images")
-
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/MUQfKFzIOeU" 
-frameborder="0" 
-allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-allowfullscreen></iframe>
