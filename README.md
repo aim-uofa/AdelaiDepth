@@ -4,7 +4,7 @@ Wei Yin, Jianming Zhang, Oliver Wang, Simon Niklaus, Long Mai, Simon Chen, Chunh
 
 
 ## Results:
-
+<video src="https://user-images.githubusercontent.com/7692314/109900670-ac017b80-7ce7-11eb-86db-175e6af5b534.mov" width="400"  controls preload>A</video> 
 https://user-images.githubusercontent.com/7692314/109900670-ac017b80-7ce7-11eb-86db-175e6af5b534.mov
 
 
