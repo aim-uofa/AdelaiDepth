@@ -4,12 +4,9 @@ Wei Yin, Jianming Zhang, Oliver Wang, Simon Niklaus, Long Mai, Simon Chen, Chunh
 
 
 ## Results:
-<video src="https://user-images.githubusercontent.com/7692314/109900670-ac017b80-7ce7-11eb-86db-175e6af5b534.mov" width="400"  controls preload>A</video> 
-https://user-images.githubusercontent.com/7692314/109900670-ac017b80-7ce7-11eb-86db-175e6af5b534.mov
 
-
-https://user-images.githubusercontent.com/7692314/109900704-b7ed3d80-7ce7-11eb-9855-0bc11fd2ce0e.mov
-
-
-https://user-images.githubusercontent.com/7692314/109900857-f256da80-7ce7-11eb-9693-3eedb581f7d1.mov
+Click to check the video:
+[video 1](https://user-images.githubusercontent.com/7692314/109900670-ac017b80-7ce7-11eb-86db-175e6af5b534.mov)
+[video 2](https://user-images.githubusercontent.com/7692314/109900704-b7ed3d80-7ce7-11eb-9855-0bc11fd2ce0e.mov)
+[video 3](https://user-images.githubusercontent.com/7692314/109900857-f256da80-7ce7-11eb-9693-3eedb581f7d1.mov)
 
