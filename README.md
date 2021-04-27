@@ -1,7 +1,7 @@
 # AdelaiDepth
-AdelaideDepth is an open source toolbox for monocular depth prediction. All works from our group are open-sourced here.
+AdelaiDepth is an open source toolbox for monocular depth prediction. All works from our group are open-sourced here.
 
-AdelaideDepth contains the following algorithms:
+AdelaiDepth contains the following algorithms:
 * LeReS: [CODE](LeReS), [Learning to Recover 3D Scene Shape from a Single Image](https://arxiv.org/abs/2012.09365)
 * DiverseDepth: [CODE](DiverseDepth), [DiverseDepth: Affine-invariant Depth Prediction Using Diverse Data](https://arxiv.org/abs/2002.00569)
 * Virtual Normal: [CODE](https://github.com/YvanYin/VNL_Monocular_Depth_Prediction),  [Enforcing geometric constraints of virtual normal for depth prediction](https://arxiv.org/abs/1907.12209)
