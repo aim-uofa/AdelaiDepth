@@ -7,28 +7,32 @@ Wei Yin, Jianming Zhang, Oliver Wang, Simon Niklaus, Long Mai, Simon Chen, Chunh
 ## Some Results
 <table>
   <tr>
-    <td><img src="../examples/1.gif" width=400 height=400></td>
-    <td><img src="../examples/2.gif" width=400 height=400></td>
-    <td><img src="../examples/3.gif" width=400 height=400></td>
+    <td><img src="../examples/1.gif" width=400 height=300></td>
+    <td><img src="../examples/2.gif" width=400 height=300></td>
+    <td><img src="../examples/3.gif" width=400 height=300></td>
   </tr>
  </table>
 
 You may want to check [this video](http://www.youtube.com/watch?v=UuT5_GK_TWk) which provides a very brief introduction to the work:
 
 ## Prerequisite
+
 ```
 conda create -n LeReS python=3.7
 conda activate LeReS
 conda install pytorch==1.6.0 torchvision==0.7.0 cudatoolkit=10.2 -c pytorch
 pip install -r requirements.txt
 ```
+
 If you only want to test the monocular depth estimation from a single image, you can directly go to 'Quick Start' and follow Step 3. 
 If you want to reconstruct 3D shape from a single image, please install [torchsparse](https://github.com/mit-han-lab/torchsparse) packages as follows. If you have any issues with torchsparse, please refer to [torchsparse](https://github.com/mit-han-lab/torchsparse).
+
 ```
 # torchsparse currently only supports PyTorch 1.6.0 + CUDA 10.2 + CUDNN 7.6.2.
 sudo apt-get install libsparsehash-dev
 pip install --upgrade git+https://github.com/mit-han-lab/torchsparse.git
 ```
+
 
 ##Quick Start
 1. Download the model weights
@@ -40,6 +44,7 @@ pip install --upgrade git+https://github.com/mit-han-lab/torchsparse.git
    * Put the testing RGB images to `ReLeS/test_images/`. Predicted depths and reconstructed point cloud are saved under `ReLeS/test_images/outputs`
 
 3. Test monocular depth prediction. Note that the predicted depths are affine-invariant. 
+
 ```angular2html
 export PYTHONPATH="<PATH to LeReS>"
    
@@ -51,6 +56,7 @@ python ./tools/test_depth.py --load_ckpt res101.pth --backbone resnext101
 ```
 
 4. Test 3D reconstruction from a single image.
+
 ```angular2html
 export PYTHONPATH="<PATH to LeReS>"
    
