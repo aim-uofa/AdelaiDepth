@@ -45,7 +45,7 @@ pip install --upgrade git+https://github.com/mit-han-lab/torchsparse.git
 
 3. Test monocular depth prediction. Note that the predicted depths are affine-invariant. 
 
-```angular2html
+```bash
 export PYTHONPATH="<PATH to LeReS>"
    
 # run the ResNet-50
@@ -57,7 +57,7 @@ python ./tools/test_depth.py --load_ckpt res101.pth --backbone resnext101
 
 4. Test 3D reconstruction from a single image.
 
-```angular2html
+```bash
 export PYTHONPATH="<PATH to LeReS>"
    
 # run the ResNet-50
