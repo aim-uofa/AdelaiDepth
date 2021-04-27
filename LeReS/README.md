@@ -17,7 +17,7 @@ You may want to check [this video](http://www.youtube.com/watch?v=UuT5_GK_TWk) w
 
 ## Prerequisite
 
-```
+```bash
 conda create -n LeReS python=3.7
 conda activate LeReS
 conda install pytorch==1.6.0 torchvision==0.7.0 cudatoolkit=10.2 -c pytorch
@@ -27,11 +27,12 @@ pip install -r requirements.txt
 If you only want to test the monocular depth estimation from a single image, you can directly go to 'Quick Start' and follow Step 3. 
 If you want to reconstruct 3D shape from a single image, please install [torchsparse](https://github.com/mit-han-lab/torchsparse) packages as follows. If you have any issues with torchsparse, please refer to [torchsparse](https://github.com/mit-han-lab/torchsparse).
 
-```
-# torchsparse currently only supports PyTorch 1.6.0 + CUDA 10.2 + CUDNN 7.6.2.
+```bash
+#torchsparse currently only supports PyTorch 1.6.0 + CUDA 10.2 + CUDNN 7.6.2.
 sudo apt-get install libsparsehash-dev
 pip install --upgrade git+https://github.com/mit-han-lab/torchsparse.git
 ```
+
 
 
 ##Quick Start
