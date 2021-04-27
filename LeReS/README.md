@@ -36,6 +36,7 @@ pip install --upgrade git+https://github.com/mit-han-lab/torchsparse.git
 
 
 ##Quick Start
+
 1. Download the model weights
    * [ResNet50 backbone](https://cloudstor.aarnet.edu.au/plus/s/VVQayrMKPlpVkw9)
    * [ResNeXt101 backbone](https://cloudstor.aarnet.edu.au/plus/s/lTIJF4vrvHCAI31)
