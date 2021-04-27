@@ -2,14 +2,15 @@
 AdelaideDepth is an open source toolbox for monocular depth prediction. All works from our group are open-sourced here.
 
 AdelaideDepth contains the following algorithms:
-* [LeReS](LeReS):  [Learning to Recover 3D Scene Shape from a Single Image (CVPR2021)](https://arxiv.org/abs/2012.09365)
-* [DiverseDepth](DiverseDepth): [DiverseDepth: Affine-invariant Depth Prediction Using Diverse Data](https://arxiv.org/abs/2002.00569)
-* [Virtual Normal](https://github.com/YvanYin/VNL_Monocular_Depth_Prediction): [Enforcing geometric constraints of virtual normal for depth prediction (ICCV2019)](https://arxiv.org/abs/1907.12209)
+* LeReS: [Code](LeReS),  [Paper](https://arxiv.org/abs/2012.09365)
+* DiverseDepth: [Code](DiverseDepth), [Paper](https://arxiv.org/abs/2002.00569)
+* Virtual Normal: [Code](https://github.com/YvanYin/VNL_Monocular_Depth_Prediction),  [Paper](https://arxiv.org/abs/1907.12209)
 
 
 ## Results:
 * LeReS
-  You may want to check [this video](http://www.youtube.com/watch?v=UuT5_GK_TWk) which provides a very brief introduction to the work:
+  
+You may want to check [this video](http://www.youtube.com/watch?v=UuT5_GK_TWk) which provides a very brief introduction to the work:
 
 <table>
   <tr>
@@ -18,9 +19,9 @@ AdelaideDepth contains the following algorithms:
      <td>Point Cloud</td>
   </tr>
   <tr>
-    <td><img src="examples/2-rgb.jpg" width=400 height=400></td>  
-    <td><img src="examples/2.jpg" width=400 height=400></td>
-    <td><img src="examples/2.gif" width=400 height=400></td>
+    <td><img src="examples/2-rgb.jpg" width=400 height=300></td>  
+    <td><img src="examples/2.jpg" width=400 height=300></td>
+    <td><img src="examples/2.gif" width=400 height=300></td>
   </tr>
  </table>
 
