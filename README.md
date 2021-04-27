@@ -1,21 +1,40 @@
-# Learning to Recover 3D Scene Shape from a Single Image
-This repository contains the source code of our paper:
-Wei Yin, Jianming Zhang, Oliver Wang, Simon Niklaus, Long Mai, Simon Chen, Chunhua Shen [Learning to Recover 3D Scene Shape from a Single Image](https://arxiv.org/abs/2012.09365).
+# AdelaideDepth
+AdelaideDepth is an open source toolbox for monocular depth prediction. All works from our group are open-sourced here.
+
+AdelaideDepth contains the following algorithms:
+* [LeReS](LeReS):  [Learning to Recover 3D Scene Shape from a Single Image (CVPR2021)](https://arxiv.org/abs/2012.09365)
+* [DiverseDepth](DiverseDepth): [DiverseDepth: Affine-invariant Depth Prediction Using Diverse Data](https://arxiv.org/abs/2002.00569)
+* [Virtual Normal](https://github.com/YvanYin/VNL_Monocular_Depth_Prediction): [Enforcing geometric constraints of virtual normal for depth prediction (ICCV2019)](https://arxiv.org/abs/1907.12209)
 
 
 ## Results:
+* LeReS
+  You may want to check [this video](http://www.youtube.com/watch?v=UuT5_GK_TWk) which provides a very brief introduction to the work:
 
-Click to check the video:
-[video 1](https://user-images.githubusercontent.com/7692314/109900670-ac017b80-7ce7-11eb-86db-175e6af5b534.mov);
-[video 2](https://user-images.githubusercontent.com/7692314/109900704-b7ed3d80-7ce7-11eb-9855-0bc11fd2ce0e.mov);
-[video 3](https://user-images.githubusercontent.com/7692314/109900857-f256da80-7ce7-11eb-9693-3eedb581f7d1.mov)
+<table>
+  <tr>
+    <td>RGB</td>
+     <td>Depth</td>
+     <td>Point Cloud</td>
+  </tr>
+  <tr>
+    <td><img src="examples/2-rgb.jpg" width=400 height=400></td>  
+    <td><img src="examples/2.jpg" width=400 height=400></td>
+    <td><img src="examples/2.gif" width=400 height=400></td>
+  </tr>
+ </table>
 
-You may want to check [this video](http://www.youtube.com/watch?v=UuT5_GK_TWk) which provides a very brief introduction to the work:
-
+![Depth](./examples/depth.png)
 
 ## BibTeX
 
 ```BibTeX
+@inproceedings{Yin2019enforcing,
+  title={Enforcing geometric constraints of virtual normal for depth prediction},
+  author={Yin, Wei and Liu, Yifan and Shen, Chunhua and Yan, Youliang},
+  booktitle= {The IEEE International Conference on Computer Vision (ICCV)},
+  year={2019}
+}
 
 @inproceedings{Wei2021CVPR,
   title     =  {Learning to Recover 3D Scene Shape from a Single Image},
