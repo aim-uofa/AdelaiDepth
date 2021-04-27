@@ -1,4 +1,4 @@
-# AdelaiDepth
+# AdelaideDepth
 AdelaideDepth is an open source toolbox for monocular depth prediction. All works from our group are open-sourced here.
 
 AdelaideDepth contains the following algorithms:
@@ -44,3 +44,7 @@ You may want to check [this video](http://www.youtube.com/watch?v=UuT5_GK_TWk) w
   year      =  {2021}
 }
 ```
+
+## License
+
+For academic use, this project is licensed under the 2-clause BSD License - see the LICENSE file for details. For commercial use, please contact [Chunhua Shen](mailto:chhshen@gmail.com).
