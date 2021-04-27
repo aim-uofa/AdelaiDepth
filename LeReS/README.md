@@ -47,10 +47,8 @@ pip install --upgrade git+https://github.com/mit-han-lab/torchsparse.git
 
 ```bash
 export PYTHONPATH="<PATH to LeReS>"
-   
 # run the ResNet-50
 python ./tools/test_depth.py --load_ckpt res50.pth --backbone resnet50
-
 # run the ResNeXt-101
 python ./tools/test_depth.py --load_ckpt res101.pth --backbone resnext101
 ```
@@ -59,10 +57,8 @@ python ./tools/test_depth.py --load_ckpt res101.pth --backbone resnext101
 
 ```bash
 export PYTHONPATH="<PATH to LeReS>"
-   
 # run the ResNet-50
 python ./tools/test_shape.py --load_ckpt res50.pth --backbone resnet50
-
 # run the ResNeXt-101
 python ./tools/test_shape.py --load_ckpt res101.pth --backbone resnext101
 ```
