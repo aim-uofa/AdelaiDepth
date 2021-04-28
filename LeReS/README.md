@@ -77,3 +77,7 @@ python ./tools/test_shape.py --load_ckpt res101.pth --backbone resnext101
   year      =  {2021}
 }
 ```
+
+## License
+
+For the LeReS project , it is liscensed under the Adobe Research License, see the [LICENSE file](LICENSE) for details.
