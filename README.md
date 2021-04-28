@@ -54,6 +54,6 @@ You may want to check [this video](http://www.youtube.com/watch?v=UuT5_GK_TWk) w
 
 ## License
 
-For the **LeReS** project, it is liscensed under the **Adobe Research License**, see the [LICENSE file](LeReS/LICENSE) for details.
+The **LeReS** project is under a non-commercial license from **Adobe Research**. See the [LICENSE file](LeReS/LICENSE) for details.
 
 Other depth prediction projects are licensed under the 2-clause BSD License - see the [LICENSE file](LICENSE) for details. For commercial use, please contact [Chunhua Shen](mailto:chhshen@gmail.com).
