@@ -3,7 +3,7 @@ AdelaiDepth is an open source toolbox for monocular depth prediction. All works 
 
 AdelaiDepth contains the following algorithms:
 * LeReS: [CODE](LeReS), [Learning to Recover 3D Scene Shape from a Single Image](https://arxiv.org/abs/2012.09365)
-* DiverseDepth: [CODE](DiverseDepth), [DiverseDepth: Affine-invariant Depth Prediction Using Diverse Data](https://arxiv.org/abs/2002.00569)
+* DiverseDepth: [CODE](https://github.com/YvanYin/DiverseDepth), [DiverseDepth: Affine-invariant Depth Prediction Using Diverse Data](https://arxiv.org/abs/2002.00569)
 * Virtual Normal: [CODE](https://github.com/YvanYin/VNL_Monocular_Depth_Prediction),  [Enforcing geometric constraints of virtual normal for depth prediction](https://arxiv.org/abs/1907.12209)
 
 
@@ -37,6 +37,13 @@ You may want to check [this video](http://www.youtube.com/watch?v=UuT5_GK_TWk) w
   year={2019}
 }
 
+@article{yin2020diversedepth,
+  title={Diversedepth: Affine-invariant depth prediction using diverse data},
+  author={Yin, Wei and Wang, Xinlong and Shen, Chunhua and Liu, Yifan and Tian, Zhi and Xu, Songcen and Sun, Changming and Renyin, Dou},
+  journal={arXiv preprint arXiv:2002.00569},
+  year={2020}
+}
+
 @inproceedings{Wei2021CVPR,
   title     =  {Learning to Recover 3D Scene Shape from a Single Image},
   author    =  {Wei Yin and Jianming Zhang and Oliver Wang and Simon Niklaus and Long Mai and Simon Chen and Chunhua Shen},
@@ -47,6 +54,6 @@ You may want to check [this video](http://www.youtube.com/watch?v=UuT5_GK_TWk) w
 
 ## License
 
-For the project LeReS, it is liscensed under the Adobe Research License, see the [LICENSE file](LeReS/LICENSE).
+For the **LeReS** project, it is liscensed under the **Adobe Research License**, see the [LICENSE file](LeReS/LICENSE) for details.
 
 Other depth prediction projects are licensed under the 2-clause BSD License - see the [LICENSE file](LICENSE) for details. For commercial use, please contact [Chunhua Shen](mailto:chhshen@gmail.com).
