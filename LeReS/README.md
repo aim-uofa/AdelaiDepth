@@ -80,4 +80,4 @@ python ./tools/test_shape.py --load_ckpt res101.pth --backbone resnext101
 
 ## License
 
-For the LeReS project , it is liscensed under the Adobe Research License, see the [LICENSE file](LICENSE) for details.
+This project is under a non-commercial license from Adobe Research. See the [LICENSE file](LICENSE) for details.
