@@ -2,7 +2,7 @@
 AdelaiDepth is an open source toolbox for monocular depth prediction. Relevant work from our group is open-sourced here.
 
 AdelaiDepth contains the following algorithms:
-* 3DSceneShape: [Code](3DSceneShape), [Learning to Recover 3D Scene Shape from a Single Image](https://arxiv.org/abs/2012.09365)
+* 3DSceneShape: [Code](https://github.com/aim-uofa/AdelaiDepth/tree/main/LeReS), [Learning to Recover 3D Scene Shape from a Single Image](https://arxiv.org/abs/2012.09365)
 * DiverseDepth: [Code](https://github.com/YvanYin/DiverseDepth), [DiverseDepth: Affine-invariant Depth Prediction Using Diverse Data](https://arxiv.org/abs/2002.00569)
 * Virtual Normal: [Code](https://github.com/YvanYin/VNL_Monocular_Depth_Prediction),  [Enforcing geometric constraints of virtual normal for depth prediction](https://arxiv.org/abs/1907.12209)
 
