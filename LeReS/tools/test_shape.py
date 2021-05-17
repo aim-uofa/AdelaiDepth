@@ -63,7 +63,7 @@ def reconstruct3D_from_depth(rgb, pred_depth, shift_model, focal_model):
     dmax = np.percentile(pred_depth_norm, 98)
     pred_depth_norm = pred_depth_norm / dmax
 
-    # proposed focal length, FOV is 60', Note that 60-80' are acceptable.
+    # proposed focal length, FOV is 60', Note that 60~80' are acceptable.
     proposed_scaled_focal = (rgb.shape[0] // 2 / np.tan((60/2.0)*np.pi/180))
 
     # recover focal

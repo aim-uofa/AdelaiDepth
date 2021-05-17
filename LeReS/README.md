@@ -1,7 +1,7 @@
-# [CVPR 2021] [Learning to Recover 3D Scene Shape from a Single Image](https://arxiv.org/abs/2012.09365)
+# [Learning to Recover 3D Scene Shape from a Single Image](https://arxiv.org/abs/2012.09365)
 
 This repository contains the source code of our paper:
-Wei Yin, Jianming Zhang, Oliver Wang, Simon Niklaus, Long Mai, Simon Chen, Chunhua Shen [Learning to Recover 3D Scene Shape from a Single Image](https://arxiv.org/abs/2012.09365).
+Wei Yin, Jianming Zhang, Oliver Wang, Simon Niklaus, Long Mai, Simon Chen, Chunhua Shen [Learning to Recover 3D Scene Shape from a Single Image](https://arxiv.org/abs/2012.09365). Published in Proc. IEEE Conf. Computer Vision and Pattern Recognition (CVPR) 2021.
 
 
 ## Some Results
