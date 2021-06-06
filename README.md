@@ -33,6 +33,7 @@ AdelaiDepth contains the following algorithms:
 2. DiverseDepth
 
 Results examples.
+
 ![Depth](./examples/diverse_depth.jpg)
 
 DiverseDepth dataset examples.
