@@ -7,10 +7,13 @@ AdelaiDepth contains the following algorithms:
 * Virtual Normal: [Code](https://github.com/YvanYin/VNL_Monocular_Depth_Prediction),  [Enforcing geometric constraints of virtual normal for depth prediction](https://arxiv.org/abs/1907.12209)
 
 
-## Results:
-* 3D Scene Shape
+## News:
+[Jun. 6, 2021] We released the training data of DiverseDepth Project!
+
+## Results and Dataset Examples:
+1. 3D Scene Shape
   
-You may want to check [this video](http://www.youtube.com/watch?v=UuT5_GK_TWk) which provides a very brief introduction to the work:
+ You may want to check [this video](http://www.youtube.com/watch?v=UuT5_GK_TWk) which provides a very brief introduction to the work:
 
 <table>
   <tr>
@@ -25,7 +28,15 @@ You may want to check [this video](http://www.youtube.com/watch?v=UuT5_GK_TWk) w
   </tr>
  </table>
 
-![Depth](./examples/depth.png)
+ ![Depth](./examples/depth.png)
+
+2. DiverseDepth
+
+ Results examples
+![Depth](./examples/diverse_depth.jpg)
+
+DiverseDepth dataset examples.
+![DiverseDepth dataset](./examples/diversedepth_dataset_examples.png)
 
 ## BibTeX
 
@@ -42,6 +53,13 @@ You may want to check [this video](http://www.youtube.com/watch?v=UuT5_GK_TWk) w
   author={Yin, Wei and Wang, Xinlong and Shen, Chunhua and Liu, Yifan and Tian, Zhi and Xu, Songcen and Sun, Changming and Renyin, Dou},
   journal={arXiv preprint arXiv:2002.00569},
   year={2020}
+}
+
+@article{yin2021virtual,
+  title={Virtual Normal: Enforcing Geometric Constraints for Accurate and Robust Depth Prediction},
+  author={Yin, Wei and Liu, Yifan and Shen, Chunhua},
+  journal={arXiv preprint arXiv:2103.04216},
+  year={2021}
 }
 
 @inproceedings{Wei2021CVPR,
