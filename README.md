@@ -70,6 +70,10 @@ DiverseDepth dataset examples.
 }
 ```
 
+### Contact
+Wei Yin: wei.yin@adelaide.edu.au
+
+
 ## License
 
 The *3D Scene Shape* code is under a non-commercial license from *Adobe Research*. See the [LICENSE file](LeReS/LICENSE) for details.
