@@ -8,6 +8,7 @@ AdelaiDepth contains the following algorithms:
 
 
 ## News:
+[Jun. 13, 2021] Our "Learning to Recover 3D Scene Shape from a Single Image" work is in the CVPR'21 BEST Paper final list!
 [Jun. 6, 2021] We released the training data of DiverseDepth Project!
 
 ## Results and Dataset Examples:
