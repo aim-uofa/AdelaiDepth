@@ -2,14 +2,14 @@
 AdelaiDepth is an open source toolbox for monocular depth prediction. Relevant work from our group is open-sourced here.
 
 AdelaiDepth contains the following algorithms:
-* 3DSceneShape(BEST PAPER FINALIST): [Code](https://github.com/aim-uofa/AdelaiDepth/tree/main/LeReS), [Learning to Recover 3D Scene Shape from a Single Image](https://arxiv.org/abs/2012.09365)
+* 3DSceneShape (Best Paper Finalist): [Code](https://github.com/aim-uofa/AdelaiDepth/tree/main/LeReS), [Learning to Recover 3D Scene Shape from a Single Image](https://arxiv.org/abs/2012.09365)
 * DiverseDepth: [Code](https://github.com/YvanYin/DiverseDepth), [DiverseDepth: Affine-invariant Depth Prediction Using Diverse Data](https://arxiv.org/abs/2002.00569)
 * Virtual Normal: [Code](https://github.com/YvanYin/VNL_Monocular_Depth_Prediction),  [Enforcing geometric constraints of virtual normal for depth prediction](https://arxiv.org/abs/1907.12209)
 
 
 ## News:
-* [Jun. 13, 2021] Our "Learning to Recover 3D Scene Shape from a Single Image" work is in the CVPR'21 BEST PAPER FINALIST!
-* [Jun. 6, 2021] We released the training data of DiverseDepth Project!
+* [Jun. 13, 2021] Our "Learning to Recover 3D Scene Shape from a Single Image" work is in the CVPR'21 Best Paper Finalist.
+* [Jun. 6, 2021] We have made the training data of DiverseDepth available.
 
 ## Results and Dataset Examples:
 1. 3D Scene Shape
@@ -50,11 +50,11 @@ DiverseDepth dataset examples.
   year={2019}
 }
 
-@article{yin2020diversedepth,
-  title={Diversedepth: Affine-invariant depth prediction using diverse data},
-  author={Yin, Wei and Wang, Xinlong and Shen, Chunhua and Liu, Yifan and Tian, Zhi and Xu, Songcen and Sun, Changming and Renyin, Dou},
-  journal={arXiv preprint arXiv:2002.00569},
-  year={2020}
+@inproceedings{Wei2021CVPR,
+  title     =  {Learning to Recover 3D Scene Shape from a Single Image},
+  author    =  {Wei Yin and Jianming Zhang and Oliver Wang and Simon Niklaus and Long Mai and Simon Chen and Chunhua Shen},
+  booktitle =  {Proc. IEEE Conf. Comp. Vis. Patt. Recogn. (CVPR)},
+  year      =  {2021}
 }
 
 @article{yin2021virtual,
@@ -62,13 +62,6 @@ DiverseDepth dataset examples.
   author={Yin, Wei and Liu, Yifan and Shen, Chunhua},
   journal={arXiv preprint arXiv:2103.04216},
   year={2021}
-}
-
-@inproceedings{Wei2021CVPR,
-  title     =  {Learning to Recover 3D Scene Shape from a Single Image},
-  author    =  {Wei Yin and Jianming Zhang and Oliver Wang and Simon Niklaus and Long Mai and Simon Chen and Chunhua Shen},
-  booktitle =  {Proc. IEEE Conf. Comp. Vis. Patt. Recogn. (CVPR)},
-  year      =  {2021}
 }
 ```
 
