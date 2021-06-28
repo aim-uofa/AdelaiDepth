@@ -30,7 +30,7 @@ If you want to reconstruct 3D shape from a single image, please install [torchsp
 ```bash
 #torchsparse currently only supports PyTorch 1.6.0 + CUDA 10.2 + CUDNN 7.6.2.
 sudo apt-get install libsparsehash-dev
-pip install --upgrade git+https://github.com/mit-han-lab/torchsparse.git
+pip install --upgrade git+https://github.com/mit-han-lab/torchsparse.git@v1.2.0
 ```
 
 
@@ -42,8 +42,8 @@ pip install --upgrade git+https://github.com/mit-han-lab/torchsparse.git
    * [ResNeXt101 backbone](https://cloudstor.aarnet.edu.au/plus/s/lTIJF4vrvHCAI31)
 
 2. Prepare data. 
-   * Move the downloaded weights to  `ReLeS/` 
-   * Put the testing RGB images to `ReLeS/test_images/`. Predicted depths and reconstructed point cloud are saved under `ReLeS/test_images/outputs`
+   * Move the downloaded weights to  `LeReS/` 
+   * Put the testing RGB images to `LeReS/test_images/`. Predicted depths and reconstructed point cloud are saved under `LeReS/test_images/outputs`
 
 3. Test monocular depth prediction. Note that the predicted depths are affine-invariant. 
 
