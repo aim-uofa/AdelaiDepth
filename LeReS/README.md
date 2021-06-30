@@ -1,6 +1,6 @@
 # BEST PAPER FINALIST: [Learning to Recover 3D Scene Shape from a Single Image](https://arxiv.org/abs/2012.09365)
 
-This repository contains the source code of our paper:
+This repository contains the source code of the paper:
 Wei Yin, Jianming Zhang, Oliver Wang, Simon Niklaus, Long Mai, Simon Chen, Chunhua Shen [Learning to Recover 3D Scene Shape from a Single Image](https://arxiv.org/abs/2012.09365). Published in Proc. IEEE Conf. Computer Vision and Pattern Recognition (CVPR) 2021.
 
 
