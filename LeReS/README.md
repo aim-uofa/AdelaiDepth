@@ -30,7 +30,7 @@ If you want to reconstruct 3D shape from a single image, please install [torchsp
 ```bash
 #torchsparse currently only supports PyTorch 1.6.0 + CUDA 10.2 + CUDNN 7.6.2.
 sudo apt-get install libsparsehash-dev
-pip install --upgrade git+https://github.com/mit-han-lab/torchsparse.git
+pip install --upgrade git+https://github.com/mit-han-lab/torchsparse.git@v1.2.0
 ```
 
 
