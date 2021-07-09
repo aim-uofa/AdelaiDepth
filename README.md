@@ -1,4 +1,6 @@
 # AdelaiDepth
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1rDLZBtiUgsFJrrL-xOgTVWxj6PMK9swq?usp=sharing)
+
 AdelaiDepth is an open source toolbox for monocular depth prediction. Relevant work from our group is open-sourced here.
 
 AdelaiDepth contains the following algorithms:
