@@ -68,7 +68,7 @@ DiverseDepth dataset examples.
 ```
 
 ### Contact
-Wei Yin <https://yvanyin.net/>
+Wei Yin <https://yvanyin.net/>; 
 Chunhua Shen <https://cshen.github.io>
 
 ## License
