@@ -10,7 +10,7 @@ AdelaiDepth contains the following algorithms:
 
 
 ## News:
-* [Jun. 13, 2021] Our "Learning to Recover 3D Scene Shape from a Single Image" work is in the CVPR'21 Best Paper Finalist.
+* [Jun. 13, 2021] Our "Learning to Recover 3D Scene Shape from a Single Image" work is one of the CVPR'21 Best Paper Finalists.
 * [Jun. 6, 2021] We have made the training data of DiverseDepth available.
 
 ## Results and Dataset Examples:
@@ -46,10 +46,10 @@ DiverseDepth dataset examples.
 
 ```BibTeX
 @inproceedings{Yin2019enforcing,
-  title={Enforcing geometric constraints of virtual normal for depth prediction},
-  author={Yin, Wei and Liu, Yifan and Shen, Chunhua and Yan, Youliang},
-  booktitle= {The IEEE International Conference on Computer Vision (ICCV)},
-  year={2019}
+  title     = {Enforcing geometric constraints of virtual normal for depth prediction},
+  author    = {Yin, Wei and Liu, Yifan and Shen, Chunhua and Yan, Youliang},
+  booktitle = {The IEEE International Conference on Computer Vision (ICCV)},
+  year      ={2019}
 }
 
 @inproceedings{Wei2021CVPR,
@@ -60,26 +60,19 @@ DiverseDepth dataset examples.
 }
 
 @article{yin2021virtual,
-  title={Virtual Normal: Enforcing Geometric Constraints for Accurate and Robust Depth Prediction},
-  author={Yin, Wei and Liu, Yifan and Shen, Chunhua},
-  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)},
-  year={2021}
-}
-
-@article{yin2020diversedepth,
-  title={DiverseDepth: Affine-invariant Depth Prediction Using Diverse Data},
-  author={Yin, Wei and Wang, Xinlong and Shen, Chunhua and Liu, Yifan and Tian, Zhi and Xu, Songcen and Sun, Changming and Renyin, Dou},
-  journal={arXiv preprint arXiv:2002.00569},
-  year={2020}
+  title   = {Virtual Normal: Enforcing Geometric Constraints for Accurate and Robust Depth Prediction},
+  author  = {Yin, Wei and Liu, Yifan and Shen, Chunhua},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)},
+  year    = {2021}
 }
 ```
 
 ### Contact
-Wei Yin: wei.yin@adelaide.edu.au
-
+Wei Yin <https://yvanyin.net/>
+Chunhua Shen <https://cshen.github.io>
 
 ## License
 
 The *3D Scene Shape* code is under a non-commercial license from *Adobe Research*. See the [LICENSE file](LeReS/LICENSE) for details.
 
-Other depth prediction projects are licensed under the 2-clause BSD License - see the [LICENSE file](LICENSE) for details. For commercial use, please contact [Chunhua Shen](https://git.io/shen).
+Other depth prediction projects are licensed under the 2-clause BSD License for non-commercial use -- see the [LICENSE file](LICENSE) for details. For commercial use, please contact [Chunhua Shen](https://cshen.github.io).
