@@ -25,9 +25,9 @@ AdelaiDepth contains the following algorithms:
      <td>Point Cloud</td>
   </tr>
   <tr>
-    <td><img src="examples/2-rgb.jpg" width=400 height=300></td>  
-    <td><img src="examples/2.jpg" width=400 height=300></td>
-    <td><img src="examples/2.gif" width=400 height=300></td>
+    <td><img src="examples/2-rgb.jpg" height=300></td>  
+    <td><img src="examples/2.jpg" height=300></td>
+    <td><img src="examples/2.gif"  height=300></td>
   </tr>
  </table>
 
@@ -35,11 +35,10 @@ AdelaiDepth contains the following algorithms:
 
 2. DiverseDepth
 
-Results examples.
-
+Results examples：
 ![Depth](./examples/diverse_depth.jpg)
 
-DiverseDepth dataset examples.
+DiverseDepth dataset examples：
 ![DiverseDepth dataset](./examples/diversedepth_dataset_examples.png)
 
 ## BibTeX
@@ -49,7 +48,7 @@ DiverseDepth dataset examples.
   title     = {Enforcing geometric constraints of virtual normal for depth prediction},
   author    = {Yin, Wei and Liu, Yifan and Shen, Chunhua and Yan, Youliang},
   booktitle = {The IEEE International Conference on Computer Vision (ICCV)},
-  year      ={2019}
+  year      = {2019}
 }
 
 @inproceedings{Wei2021CVPR,
@@ -68,8 +67,8 @@ DiverseDepth dataset examples.
 ```
 
 ### Contact
-Wei Yin <https://yvanyin.net/>; 
-Chunhua Shen <https://cshen.github.io>
+* Wei Yin <https://yvanyin.net/> 
+* Chunhua Shen <https://cshen.github.io>
 
 ## License
 
