@@ -31,14 +31,17 @@ AdelaiDepth contains the following algorithms:
   </tr>
  </table>
 
- ![Depth](./examples/depth.png)
+
+![Depth](./examples/depth.png)
 
 2. DiverseDepth
 
-Results examples：
+* Results examples：
+
 ![Depth](./examples/diverse_depth.jpg)
 
-DiverseDepth dataset examples：
+* DiverseDepth dataset examples：
+
 ![DiverseDepth dataset](./examples/diversedepth_dataset_examples.png)
 
 ## BibTeX
