@@ -10,6 +10,7 @@ AdelaiDepth contains the following algorithms:
 * Depth Estimation Using Deep Convolutional Neural Fields: [Code](https://bitbucket.org/fayao/dcnf-fcsp/src/master/), [Learning Depth from Single Monocular Images Using Deep Convolutional Neural Fields, TPAMI'16, CVPR'15](https://arxiv.org/abs/1502.07411)
 
 ## News:
+* [Feb. 13, 2022] Training code and data of DiverseDepth have been released.
 * [Jun. 13, 2021] Our "Learning to Recover 3D Scene Shape from a Single Image" work is one of the CVPR'21 Best Paper Finalists.
 * [Jun. 6, 2021] We have made the training data of DiverseDepth available.
 
