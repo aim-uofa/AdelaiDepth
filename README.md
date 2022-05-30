@@ -4,7 +4,7 @@
 AdelaiDepth is an open source toolbox for monocular depth prediction. Relevant work from our group is open-sourced here.
 
 AdelaiDepth contains the following algorithms:
-* Boosting Depth: Code, [Towards 3D Scene Reconstruction from Locally Scale-Aligned
+* Boosting Depth: [Code](https://github.com/guangkaixu/BoostingDepth), [Towards 3D Scene Reconstruction from Locally Scale-Aligned
 Monocular Video Depth (Boosting Monocular Depth Estimation with Sparse Guided Points)](https://arxiv.org/abs/2202.01470)
 * 3D Scene Shape (Best Paper Finalist): [Code](https://github.com/aim-uofa/AdelaiDepth/tree/main/LeReS), [Learning to Recover 3D Scene Shape from a Single Image](https://arxiv.org/abs/2012.09365)
 * DiverseDepth: [Code](https://github.com/YvanYin/DiverseDepth), [Virtual Normal: Enforcing Geometric Constraints for Accurate and Robust Depth Prediction](https://arxiv.org/abs/2103.04216), [DiverseDepth: Affine-invariant Depth Prediction Using Diverse Data](https://arxiv.org/abs/2002.00569)
@@ -12,6 +12,8 @@ Monocular Video Depth (Boosting Monocular Depth Estimation with Sparse Guided Po
 * Depth Estimation Using Deep Convolutional Neural Fields: [Code](https://bitbucket.org/fayao/dcnf-fcsp/src/master/), [Learning Depth from Single Monocular Images Using Deep Convolutional Neural Fields, TPAMI'16, CVPR'15](https://arxiv.org/abs/1502.07411)
 
 ## News:
+* [May. 30, 2022] Code for local recovery strategy of BoostingDepth is released.
+* [May. 30, 2022] Training code and data of LeReS project have been released.
 * [Feb. 13, 2022] Training code and data of DiverseDepth project have been released.
 * [Jun. 13, 2021] Our "Learning to Recover 3D Scene Shape from a Single Image" work is one of the CVPR'21 Best Paper Finalists.
 * [Jun. 6, 2021] We have made the training data of DiverseDepth available.
