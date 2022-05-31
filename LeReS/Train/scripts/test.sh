@@ -9,5 +9,5 @@ LOG="./$TIME.txt"
 python ../tools/test_multiauxiv2_nyu.py \
 --dataroot ./datasets \
 --batchsize 1 \
---load_ckpt /home/gk-ai/桌面/AdelaiDepth/LeReS/Train/scripts/output11111/May29-21-21-39_gk-ai-ustc/ckpt/epoch0_step10.pth \
+--load_ckpt path_to_ckpt.pth \
 $1 2>&1 | tee $LOG
