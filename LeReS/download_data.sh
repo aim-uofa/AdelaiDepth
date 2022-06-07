@@ -24,10 +24,19 @@ wget https://cloudstor.aarnet.edu.au/plus/s/kvLcrVSWfOsERsI/download -O taskonom
 tar -xvf ./*.tar.gz
 unzip annotations.zip
 
-# The HRWSI and Holopix50k can be downloaded from Aliyun Cloud:
-# HRWSI:
-# Holopix50k:
+# HRWSI
+cd ..
+mkdir HRWSI
+cd HRWSI
+wget https://cloudstor.aarnet.edu.au/plus/s/oaWj2Cfvif3WuD0/download -O HRWSI.zip
+unzip HRWSI.zip
 
+# Holopix50k
+cd ..
+mkdir Holopix50k
+cd Holopix50k
+wget https://cloudstor.aarnet.edu.au/plus/s/LuOsawtGq6cDAKr/download -O Holopix50k.zip
+unzip Holopix50k.zip
 
 # The overview of data under Train/datasets are:
 # -Train

@@ -74,7 +74,7 @@ pip install --upgrade git+https://github.com/mit-han-lab/torchsparse.git@v1.2.0
    sh train_demo.sh
    ```
 
-2. Download the training data. For taskonomy and DiverseDepth, please run 'download_data.sh'; For HWRSI and Holopix50k, please download from link(to be uploaded). All data are organized under the `Train/datasets`. The structure of all data are as follows.
+2. Download the training data. Please run 'download_data.sh' to achieve datasets of taskonomy, DiverseDepth, HWRSI and Holopix50k. All data are organized under the `Train/datasets`. The structure of all data are as follows.
 
     ```
     |--Train
