@@ -47,7 +47,7 @@ def randomSampling(inputs, targets, masks, threshold, sample_num):
 # inputs_A, inputs_B, targets_A, targets_B, masks_A, masks_B
 ###########
 def ind2sub(idx, cols):
-    r = idx / cols
+    r = torch.floor_divide(idx, cols)
     c = idx - r * cols
     return r, c
 
@@ -60,7 +60,7 @@ def edgeGuidedSampling(inputs, targets, edges_img, thetas_img, masks, h, w):
     # find edges
     edges_max = edges_img.max()
     edges_mask = edges_img.ge(edges_max*0.1)
-    edges_loc = edges_mask.nonzero()
+    edges_loc = edges_mask.nonzero(as_tuple =False)
 
     inputs_edge = torch.masked_select(inputs, edges_mask)
     targets_edge = torch.masked_select(targets, edges_mask)
