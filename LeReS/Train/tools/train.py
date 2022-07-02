@@ -253,8 +253,8 @@ def main():
     val_args.batchsize = 1
     val_args.thread = 0
 
-    if 'HRWSI' in val_args.dataset_list:
-        val_args.dataset_list.remove('HRWSI')
+    if 'Holopix50k' in val_args.dataset_list:
+        val_args.dataset_list.remove('Holopix50k')
 
     print('Using PyTorch version: ', torch.__version__, torch.version.cuda)
     ngpus_per_node = torch.cuda.device_count()
