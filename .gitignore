@@ -1,0 +1,27 @@
+## ignore these files ##
+
+# rgbd training datasets
+LeReS/Train/datasets/
+
+# training logs
+LeReS/Train/scripts/output/
+
+# editor, os cache directory
+.vscode/
+.idea/
+__MACOSX/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+# https://stackoverflow.com/a/69970899
+**/__pycache__/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# virtualenv
+.venv
+venv/
+ENV/
