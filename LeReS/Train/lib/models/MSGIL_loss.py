@@ -42,7 +42,6 @@ class MSGIL_NORM_Loss(nn.Module):
             gt_i = gt[i]
             mask = gt_i > 0
             depth_valid = gt_i[mask]
-            depth_valid = depth_valid[:5]
             if depth_valid.shape[0] < 10:
                 data_mean.append(torch.tensor(0).cuda())
                 data_std_dev.append(torch.tensor(1).cuda())
@@ -63,9 +62,10 @@ class MSGIL_NORM_Loss(nn.Module):
         gt_mean, gt_std = self.transform(gt)
         gt_trans = (gt - gt_mean[:, None, None, None]) / (gt_std[:, None, None, None] + 1e-8)
         for i in range(self.scales_num):
-            d_gt = gt_trans[:, :, ::2, ::2]
-            d_pred = pred[:, :, ::2, ::2]
-            d_mask = mask[:, :, ::2, ::2]
+            step = pow(2, i)
+            d_gt = gt_trans[:, :, ::step, ::step]
+            d_pred = pred[:, :, ::step, ::step]
+            d_mask = mask[:, :, ::step, ::step]
             grad_term += self.one_scale_gradient_loss(d_pred, d_gt, d_mask)
         return grad_term
 

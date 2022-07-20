@@ -241,7 +241,10 @@ class EdgeguidedNormalRegressionLoss(nn.Module):
             random_input_cos = torch.abs(torch.sum(random_inputs_A * random_inputs_B, dim=0))
             loss += torch.sum(torch.abs(random_target_cos - random_input_cos)) / (random_target_cos.shape[0] + 1e-8)
 
-        return loss[0].float()/n
+        if loss[0] != 0:
+            return loss[0].float() / n
+        else:
+            return pred_depths.sum() * 0.0
 
 
 

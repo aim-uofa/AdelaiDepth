@@ -32,12 +32,8 @@ class RelDepthModel(nn.Module):
             out = self.forward(data, is_train=False)
             pred_depth = out['decoder']
             pred_disp = out['auxi']
-            pred_depth_normalize = (pred_depth - pred_depth.min() + 1) / (pred_depth.max() - pred_depth.min()) #pred_depth - pred_depth.min() #- pred_depth.max()
             pred_depth_out = pred_depth
-            pred_disp_normalize = (pred_disp - pred_disp.min() + 1) / (pred_disp.max() - pred_disp.min())
-            return {'pred_depth': pred_depth_out, 'pred_depth_normalize': pred_depth_normalize,
-                    'pred_disp': pred_disp, 'pred_disp_normalize': pred_disp_normalize,
-                    }
+            return {'pred_depth': pred_depth_out, 'pred_disp': pred_disp}
 
 
 class ModelLoss(nn.Module):
@@ -83,16 +79,20 @@ class ModelLoss(nn.Module):
         if 'disp' not in data:
             return {'total_loss': torch.tensor(0.0).cuda()}
 
-        gt = data['disp'].to(device=auxi.device)
+        gt_disp = data['disp'].to(device=auxi.device)
+
+        mask_mid_quality = data['quality_flg'] >= 2
+        gt_disp_mid = gt_disp[mask_mid_quality]
+        auxi_mid = auxi[mask_mid_quality]
 
         if '_ranking-edge-auxi_' in cfg.TRAIN.LOSS_MODE.lower():
-            loss['ranking-edge_auxiloss'] = self.ranking_edge_auxiloss(auxi, gt, data['rgb'])
+            loss['ranking-edge_auxiloss'] = self.ranking_edge_auxiloss(auxi, gt_disp, data['rgb'])
 
         if '_msgil-normal-auxi_' in cfg.TRAIN.LOSS_MODE.lower():
-            loss['msg_normal_auxiloss'] = (self.msg_normal_auxiloss(auxi, gt) * 0.5).float()
+            loss['msg_normal_auxiloss'] = (self.msg_normal_auxiloss(auxi_mid, gt_disp_mid) * 0.5).float()
 
         if '_meanstd-tanh-auxi_' in cfg.TRAIN.LOSS_MODE.lower():
-            loss['meanstd-tanh_auxiloss'] = self.meanstd_tanh_auxiloss(auxi, gt)
+            loss['meanstd-tanh_auxiloss'] = self.meanstd_tanh_auxiloss(auxi_mid, gt_disp_mid)
 
         total_loss = sum(loss.values())
         loss['total_loss'] = total_loss * cfg.TRAIN.LOSS_AUXI_WEIGHT
@@ -157,7 +157,7 @@ class ModelLoss(nn.Module):
 
         # Multi-scale Gradient Loss
         if '_msgil-normal_' in cfg.TRAIN.LOSS_MODE.lower():
-            loss['msg_normal_loss'] = (self.msg_normal_loss(pred_depth, gt_depth) * 0.1).float()
+            loss['msg_normal_loss'] = (self.msg_normal_loss(pred_depth_mid, gt_depth_mid) * 0.5).float()
 
         total_loss = sum(loss.values())
         loss['total_loss'] = total_loss

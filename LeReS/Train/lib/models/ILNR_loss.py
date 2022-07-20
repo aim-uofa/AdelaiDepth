@@ -20,7 +20,6 @@ class MEADSTD_TANH_NORM_Loss(nn.Module):
             gt_i = gt[i]
             mask = gt_i > 0
             depth_valid = gt_i[mask]
-            depth_valid = depth_valid[:5]
             if depth_valid.shape[0] < 10:
                 data_mean.append(torch.tensor(0).cuda())
                 data_std_dev.append(torch.tensor(1).cuda())
@@ -49,7 +48,7 @@ class MEADSTD_TANH_NORM_Loss(nn.Module):
         pred_maskbatch = pred[mask_batch]
         gt_maskbatch = gt[mask_batch]
 
-        gt_mean, gt_std = self.transform(gt)
+        gt_mean, gt_std = self.transform(gt_maskbatch)
         gt_trans = (gt_maskbatch - gt_mean[:, None, None, None]) / (gt_std[:, None, None, None] + 1e-8)
 
         B, C, H, W = gt_maskbatch.shape
