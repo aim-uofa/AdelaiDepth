@@ -78,8 +78,8 @@ def edgeGuidedSampling(inputs, targets, edges_img, thetas_img, masks, h, w):
     pos_or_neg = torch.ones(4, sample_num).cuda()
     pos_or_neg[:2,:] = -pos_or_neg[:2,:]
     distance_matrix = distance_matrix.float() * pos_or_neg
-    col = col_anchors.unsqueeze(0).expand(4, sample_num).long() + torch.round(distance_matrix.double() * torch.abs(torch.cos(theta_anchors)).unsqueeze(0)).long()
-    row = row_anchors.unsqueeze(0).expand(4, sample_num).long() + torch.round(distance_matrix.double() * torch.abs(torch.sin(theta_anchors)).unsqueeze(0)).long()
+    col = col_anchors.unsqueeze(0).expand(4, sample_num).long() + torch.round(distance_matrix.double() * torch.cos(theta_anchors).unsqueeze(0)).long()
+    row = row_anchors.unsqueeze(0).expand(4, sample_num).long() + torch.round(distance_matrix.double() * torch.sin(theta_anchors).unsqueeze(0)).long()
 
     # constrain 0=<c<=w, 0<=r<=h
     # Note: index should minus 1
