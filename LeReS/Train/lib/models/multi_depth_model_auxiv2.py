@@ -149,15 +149,21 @@ class ModelLoss(nn.Module):
 
         # Scale-shift Invariant Loss
         if '_meanstd-tanh_' in cfg.TRAIN.LOSS_MODE.lower():
-            loss_ssi = self.meanstd_tanh_loss(pred_depth_mid, gt_depth_mid)
-            loss['meanstd-tanh_loss'] = loss_ssi
+            if mask_mid_quality.sum():
+                loss_ssi = self.meanstd_tanh_loss(pred_depth_mid, gt_depth_mid)
+                loss['meanstd-tanh_loss'] = loss_ssi
+            else:
+                loss['meanstd-tanh_loss'] = pred_depth.sum() * 0.
 
         if '_ranking-edge_' in cfg.TRAIN.LOSS_MODE.lower():
             loss['ranking-edge_loss'] = self.ranking_edge_loss(pred_depth, gt_depth, data['rgb'])
 
         # Multi-scale Gradient Loss
         if '_msgil-normal_' in cfg.TRAIN.LOSS_MODE.lower():
-            loss['msg_normal_loss'] = (self.msg_normal_loss(pred_depth_mid, gt_depth_mid) * 0.5).float()
+            if mask_mid_quality.sum():
+                loss['msg_normal_loss'] = (self.msg_normal_loss(pred_depth_mid, gt_depth_mid) * 0.5).float()
+            else:
+                loss['msg_normal_loss'] = pred_depth.sum() * 0.
 
         total_loss = sum(loss.values())
         loss['total_loss'] = total_loss
