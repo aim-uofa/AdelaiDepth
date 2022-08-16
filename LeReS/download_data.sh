@@ -17,7 +17,8 @@ unzip DiverseDepth_rgb.zip
 cd ..
 mkdir taskonomy
 cd taskonomy
-wget https://cloudstor.aarnet.edu.au/plus/s/Q4jqXt2YfqcGZvK/download -O annotations.zip
+# (original link) wget https://cloudstor.aarnet.edu.au/plus/s/Q4jqXt2YfqcGZvK/download -O annotations.zip
+wget --no-check-certificate "https://drive.google.com/uc?export=download&id=1Nhz0BABZBjjE-ITbJoSyVSuaJkD-iWVv" -O annotations.zip
 wget https://cloudstor.aarnet.edu.au/plus/s/EBv6jRp326zMlf6/download -O taskonomy_rgbs.tar.gz
 wget https://cloudstor.aarnet.edu.au/plus/s/t334giSOJtC97Uq/download -O taskonomy_ins_planes.tar.gz
 wget https://cloudstor.aarnet.edu.au/plus/s/kvLcrVSWfOsERsI/download -O taskonomy_depths.tar.gz
