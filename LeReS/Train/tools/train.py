@@ -2,6 +2,8 @@ import math
 import traceback
 import errno
 import os
+import os.path as osp
+import json
 import torch.distributed as dist
 import torch.multiprocessing as mp
 
@@ -253,8 +255,19 @@ def main():
     val_args.batchsize = 1
     val_args.thread = 0
 
-    if 'Holopix50k' in val_args.dataset_list:
-        val_args.dataset_list.remove('Holopix50k')
+    # Validation datasets
+    val_datasets = []
+    for dataset_name in val_args.dataset_list:
+        val_annos_path = osp.join(val_args.dataroot, dataset_name, 'annotations/val_annotations.json')
+        if not osp.exists(val_annos_path):
+            continue
+        with open(val_annos_path, 'r') as f:
+            annos = json.load(f)
+            depth_path_demo = annos[0]['depth_path']
+            depth_demo = cv2.imread(depth_path_demo, -1)
+            if depth_demo is not None:
+                val_datasets.append(dataset_name)
+    val_args.dataset_list = val_datasets
 
     print('Using PyTorch version: ', torch.__version__, torch.version.cuda)
     ngpus_per_node = torch.cuda.device_count()

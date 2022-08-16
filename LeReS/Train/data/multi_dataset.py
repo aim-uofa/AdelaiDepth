@@ -24,7 +24,7 @@ class MultiDataset(Dataset):
                                      'annotations',
                                      opt.phase_anno + '_annotations.json')
         self.dir_teacher_list = None
-        self.rgb_paths, self.depth_paths, self.disp_paths, self.sem_masks, self.ins_paths, self.all_annos, self.curriculum_list = self.getData()
+        self.rgb_paths, self.depth_paths, self.disp_paths, self.sem_masks, self.ins_paths, self.cam_intrinsics, self.all_annos, self.curriculum_list = self.getData()
         self.data_size = len(self.all_annos)
         self.focal_length_dict = {'diml_ganet': 1380.0 / 2.0, 'taskonomy': 512.0, 'online': 256.0,
                                   'apolloscape2': 2304.0 / 2.0, '3d-ken-burns': 512.0}
@@ -71,8 +71,16 @@ class MultiDataset(Dataset):
             else None
             for i in range(len(all_annos))
         ]
+        cam_intrinsics = [
+            (
+                all_annos[i]['cam_intrinsic_para']
+                if 'cam_intrinsic_para' in all_annos[i]
+                else None
+            )
+            for i in range(len(all_annos))
+        ]
 
-        return rgb_paths, depth_paths, disp_paths, mask_paths, ins_paths, all_annos, curriculum_list
+        return rgb_paths, depth_paths, disp_paths, mask_paths, ins_paths, cam_intrinsics, all_annos, curriculum_list
 
     def __getitem__(self, anno_index):
         if 'train' in self.opt.phase:
@@ -88,7 +96,6 @@ class MultiDataset(Dataset):
         :param anno_index: data index.
         """
         rgb_path = self.rgb_paths[anno_index]
-        depth_path = self.depth_paths[anno_index]
 
         rgb = cv2.imread(rgb_path)[:, :, ::-1]  # bgr, H*W*C
         depth, sky_mask, mask_valid = self.load_depth(anno_index, rgb)
@@ -110,11 +117,8 @@ class MultiDataset(Dataset):
         :param anno_index: data index.
         """
         rgb_path = self.rgb_paths[anno_index]
-        depth_path = self.depth_paths[anno_index]
+        # depth_path = self.depth_paths[anno_index]
         rgb = cv2.imread(rgb_path)[:, :, ::-1]   # rgb, H*W*C
-
-        focal_length = self.focal_length_dict[
-            self.dataset_name.lower()] if self.dataset_name.lower() in self.focal_length_dict else 256.0
 
         disp, depth, \
         invalid_disp, invalid_depth, \
@@ -124,6 +128,13 @@ class MultiDataset(Dataset):
 
         # resize rgb, depth, disp
         flip_flg, resize_size, crop_size, pad, resize_ratio = self.set_flip_resize_crop_pad(rgb_aug)
+
+        # focal length
+        cam_intrinsic = self.cam_intrinsics[anno_index] if self.cam_intrinsics[anno_index] is not None \
+                        else [float(self.focal_length_dict[self.dataset_name.lower()]), resize_size, resize_size] if self.dataset_name.lower() in self.focal_length_dict \
+                        else [256.0, resize_size, resize_size]
+        focal_length = focal_length * (resize_size[0] + resize_size[1]) / (cam_intrinsic[1] + cam_intrinsic[2])
+        focal_length = float(focal_length)
 
         rgb_resize = self.flip_reshape_crop_pad(rgb_aug, flip_flg, resize_size, crop_size, pad, 0)
         depth_resize = self.flip_reshape_crop_pad(depth, flip_flg, resize_size, crop_size, pad, -1, resize_method='nearest')
@@ -216,27 +227,39 @@ class MultiDataset(Dataset):
         flip_prob = np.random.uniform(0.0, 1.0)
         flip_flg = True if flip_prob > 0.5 and 'train' in self.opt.phase else False
 
+        # crop
+        if 'train' in self.opt.phase:
+            image_h, image_w = A.shape[:2]
+            croph, cropw = np.random.randint(image_h // 2, image_h + 1), np.random.randint(image_w // 2, image_w + 1)
+            h0 = np.random.randint(image_h - croph + 1)
+            w0 = np.random.randint(image_w - cropw + 1)
+            crop_size = [w0, h0, cropw, croph]
+        else:
+            crop_size = [0, 0, resize_size[1], resize_size[0]]
+
+        # # crop
+        # start_y = 0 if resize_size[0] <= cfg.DATASET.CROP_SIZE[0] else np.random.randint(0, resize_size[0] - cfg.DATASET.CROP_SIZE[0])
+        # start_x = 0 if resize_size[1] <= cfg.DATASET.CROP_SIZE[1] else np.random.randint(0, resize_size[1] - cfg.DATASET.CROP_SIZE[1])
+        # crop_height = resize_size[0] if resize_size[0] <= cfg.DATASET.CROP_SIZE[0] else cfg.DATASET.CROP_SIZE[0]
+        # crop_width = resize_size[1] if resize_size[1] <= cfg.DATASET.CROP_SIZE[1] else cfg.DATASET.CROP_SIZE[1]
+        # crop_size = [start_x, start_y, crop_width, crop_height] if 'train' in self.opt.phase else [0, 0, resize_size[1], resize_size[0]]
+
         # reshape
         ratio_list = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5]  #
         if 'train' in self.opt.phase:
             resize_ratio = ratio_list[np.random.randint(len(ratio_list))]
         else:
-            resize_ratio = 0.5
+            resize_ratio = 1.0
 
         resize_size = [int(A.shape[0] * resize_ratio + 0.5),
                        int(A.shape[1] * resize_ratio + 0.5)]  # [height, width]
-        # crop
-        start_y = 0 if resize_size[0] <= cfg.DATASET.CROP_SIZE[0] else np.random.randint(0, resize_size[0] - cfg.DATASET.CROP_SIZE[0])
-        start_x = 0 if resize_size[1] <= cfg.DATASET.CROP_SIZE[1] else np.random.randint(0, resize_size[1] - cfg.DATASET.CROP_SIZE[1])
-        crop_height = resize_size[0] if resize_size[0] <= cfg.DATASET.CROP_SIZE[0] else cfg.DATASET.CROP_SIZE[0]
-        crop_width = resize_size[1] if resize_size[1] <= cfg.DATASET.CROP_SIZE[1] else cfg.DATASET.CROP_SIZE[1]
-        crop_size = [start_x, start_y, crop_width, crop_height] if 'train' in self.opt.phase else [0, 0, resize_size[1], resize_size[0]]
 
-        # pad
-        pad_height = 0 if resize_size[0] > cfg.DATASET.CROP_SIZE[0] else cfg.DATASET.CROP_SIZE[0] - resize_size[0]
-        pad_width = 0 if resize_size[1] > cfg.DATASET.CROP_SIZE[1] else cfg.DATASET.CROP_SIZE[1] - resize_size[1]
-        # [up, down, left, right]
-        pad = [pad_height, 0, pad_width, 0] if 'train' in self.opt.phase else [0, 0, 0, 0]
+        # # pad
+        # pad_height = 0 if resize_size[0] > cfg.DATASET.CROP_SIZE[0] else cfg.DATASET.CROP_SIZE[0] - resize_size[0]
+        # pad_width = 0 if resize_size[1] > cfg.DATASET.CROP_SIZE[1] else cfg.DATASET.CROP_SIZE[1] - resize_size[1]
+        # # [up, down, left, right]
+        # pad = [pad_height, 0, pad_width, 0] if 'train' in self.opt.phase else [0, 0, 0, 0]
+        pad = [0, 0, 0, 0]
         return flip_flg, resize_size, crop_size, pad, resize_ratio
 
     def flip_reshape_crop_pad(self, img, flip, resize_size, crop_size, pad, pad_value=0, resize_method='bilinear'):
@@ -252,42 +275,63 @@ class MultiDataset(Dataset):
         # Flip
         if flip:
             img = np.flip(img, axis=1)
+        
+        # Crop the image
+        img_crop = img[
+            crop_size[1]:crop_size[1] + crop_size[3],
+            crop_size[0]:crop_size[0] + crop_size[2]
+        ]
 
         # Resize the raw image
-        if resize_method == 'bilinear':
-            img_resize = cv2.resize(img, (resize_size[1], resize_size[0]), interpolation=cv2.INTER_LINEAR)
-        elif resize_method == 'nearest':
-            img_resize = cv2.resize(img, (resize_size[1], resize_size[0]), interpolation=cv2.INTER_NEAREST)
+        if resize_method == 'nearest':
+            img_resize = cv2.resize(img_crop, (resize_size[1], resize_size[0]), interpolation=cv2.INTER_NEAREST)
         else:
-            raise ValueError
-
-        # Crop the resized image
-        img_crop = img_resize[crop_size[1]:crop_size[1] + crop_size[3], crop_size[0]:crop_size[0] + crop_size[2]]
+            img_resize = cv2.resize(img_crop, (resize_size[1], resize_size[0]), interpolation=cv2.INTER_LINEAR)
 
         # Pad the raw image
         if len(img.shape) == 3:
-            img_pad = np.pad(img_crop, ((pad[0], pad[1]), (pad[2], pad[3]), (0, 0)), 'constant',
+            img_pad = np.pad(img_resize, ((pad[0], pad[1]), (pad[2], pad[3]), (0, 0)), 'constant',
                              constant_values=(pad_value, pad_value))
         else:
-            img_pad = np.pad(img_crop, ((pad[0], pad[1]), (pad[2], pad[3])), 'constant',
+            img_pad = np.pad(img_resize, ((pad[0], pad[1]), (pad[2], pad[3])), 'constant',
                              constant_values=(pad_value, pad_value))
+
+        # # Resize the raw image
+        # if resize_method == 'bilinear':
+        #     img_resize = cv2.resize(img, (resize_size[1], resize_size[0]), interpolation=cv2.INTER_LINEAR)
+        # elif resize_method == 'nearest':
+        #     img_resize = cv2.resize(img, (resize_size[1], resize_size[0]), interpolation=cv2.INTER_NEAREST)
+        # else:
+        #     raise ValueError
+
+        # # Crop the resized image
+        # img_crop = img_resize[crop_size[1]:crop_size[1] + crop_size[3], crop_size[0]:crop_size[0] + crop_size[2]]
+
+        # # Pad the raw image
+        # if len(img.shape) == 3:
+        #     img_pad = np.pad(img_crop, ((pad[0], pad[1]), (pad[2], pad[3]), (0, 0)), 'constant',
+        #                      constant_values=(pad_value, pad_value))
+        # else:
+        #     img_pad = np.pad(img_crop, ((pad[0], pad[1]), (pad[2], pad[3])), 'constant',
+        #                      constant_values=(pad_value, pad_value))
+
         return img_pad
 
-    def depth_to_bins(self, depth):
-        """
-        Discretize depth into depth bins
-        Mark invalid padding area as cfg.MODEL.DECODER_OUTPUT_C + 1
-        :param depth: 1-channel depth, [1, h, w]
-        :return: depth bins [1, h, w]
-        """
-        invalid_mask = depth < 1e-8
-        depth[depth < cfg.DATASET.DEPTH_MIN] = cfg.DATASET.DEPTH_MIN
-        depth[depth > cfg.DATASET.DEPTH_MAX] = cfg.DATASET.DEPTH_MAX
-        bins = ((torch.log10(depth) - cfg.DATASET.DEPTH_MIN_LOG) / cfg.DATASET.DEPTH_BIN_INTERVAL).to(torch.int)
-        bins[invalid_mask] = cfg.MODEL.DECODER_OUTPUT_C + 1
-        bins[bins == cfg.MODEL.DECODER_OUTPUT_C] = cfg.MODEL.DECODER_OUTPUT_C - 1
-        depth[invalid_mask] = -1.0
-        return bins
+    # def depth_to_bins(self, depth):
+    #     """
+    #     Discretize depth into depth bins
+    #     Mark invalid padding area as cfg.MODEL.DECODER_OUTPUT_C + 1
+    #     :param depth: 1-channel depth, [1, h, w]
+    #     :return: depth bins [1, h, w]
+    #     """
+    #     invalid_mask = depth < 1e-8
+    #     depth[depth < cfg.DATASET.DEPTH_MIN] = cfg.DATASET.DEPTH_MIN
+    #     depth[depth > cfg.DATASET.DEPTH_MAX] = cfg.DATASET.DEPTH_MAX
+    #     bins = ((torch.log10(depth) - cfg.DATASET.DEPTH_MIN_LOG) / cfg.DATASET.DEPTH_BIN_INTERVAL).to(torch.int)
+    #     bins[invalid_mask] = cfg.MODEL.DECODER_OUTPUT_C + 1
+    #     bins[bins == cfg.MODEL.DECODER_OUTPUT_C] = cfg.MODEL.DECODER_OUTPUT_C - 1
+    #     depth[invalid_mask] = -1.0
+    #     return bins
 
     def scale_torch(self, img):
         """
@@ -342,9 +386,9 @@ class MultiDataset(Dataset):
         if (self.depth_paths[anno_index] != None) and (self.disp_paths[anno_index] != None):
             # dataset has both depth and disp
             disp = cv2.imread(self.disp_paths[anno_index], -1)
-            disp = (disp / disp.max() * 60000).astype(np.uint16)
+            disp = (disp / (disp.max() + 1e-8) * 60000).astype(np.uint16)
             depth = cv2.imread(self.depth_paths[anno_index], -1)
-            depth = (depth / depth.max() * 60000).astype(np.uint16)
+            depth = (depth / (depth.max() + 1e-8) * 60000).astype(np.uint16)
             depth_path = self.depth_paths[anno_index]
         elif self.disp_paths[anno_index] != None:
             # dataset only has disparity
@@ -352,7 +396,7 @@ class MultiDataset(Dataset):
             disp_mask = disp < 1e-8
             depth = 1 / (disp + 1e-8)
             depth[disp_mask] = 0
-            depth = (depth / depth.max() * 60000).astype(np.uint16)
+            depth = (depth / (depth.max() + 1e-8) * 60000).astype(np.uint16)
             depth_path = self.disp_paths[anno_index]
         elif self.depth_paths[anno_index] != None:
             # dataset only has depth
@@ -362,7 +406,7 @@ class MultiDataset(Dataset):
             depth_mask = depth < 1e-8
             disp = 1 / (depth + 1e-8)
             disp[depth_mask] = 0
-            disp = (disp / disp.max() * 60000).astype(np.uint16)
+            disp = (disp / (disp.max() + 1e-8) * 60000).astype(np.uint16)
         else:
             depth = np.full((rgb.shape[0], rgb.shape[1]), 0, dtype=np.uint16)
             disp = np.full((rgb.shape[0], rgb.shape[1]), 0, dtype=np.uint16)
@@ -399,7 +443,7 @@ class MultiDataset(Dataset):
             #depth_filter1 = depth[depth > 1e-8]
             #drange = (depth_filter1.max() - depth_filter1.min())
             drange = depth.max()
-        depth_norm = depth / drange
+        depth_norm = depth / (drange + 1e-8)
         mask_valid = (depth_norm > 1e-8).astype(np.float)
         return depth_norm, mask_valid
 
