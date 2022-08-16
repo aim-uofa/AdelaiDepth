@@ -78,7 +78,7 @@ class MultiDataset(Dataset):
                 else None
             )
             for i in range(len(all_annos))
-        ]
+        ] # [f, cx, cy]
 
         return rgb_paths, depth_paths, disp_paths, mask_paths, ins_paths, cam_intrinsics, all_annos, curriculum_list
 
@@ -131,9 +131,10 @@ class MultiDataset(Dataset):
 
         # focal length
         cam_intrinsic = self.cam_intrinsics[anno_index] if self.cam_intrinsics[anno_index] is not None \
-                        else [float(self.focal_length_dict[self.dataset_name.lower()]), resize_size, resize_size] if self.dataset_name.lower() in self.focal_length_dict \
-                        else [256.0, resize_size, resize_size]
-        focal_length = focal_length * (resize_size[0] + resize_size[1]) / (cam_intrinsic[1] + cam_intrinsic[2])
+                        else [float(self.focal_length_dict[self.dataset_name.lower()]), cfg.DATASET.CROP_SIZE[1] / 2, cfg.DATASET.CROP_SIZE[0] / 2] if self.dataset_name.lower() in self.focal_length_dict \
+                        else [256.0, cfg.DATASET.CROP_SIZE[1] / 2, cfg.DATASET.CROP_SIZE[0] / 2]
+        focal_length = cam_intrinsic[0] * (resize_size[0] + resize_size[1]) / ((cam_intrinsic[1] + cam_intrinsic[2]) * 2)
+        focal_length = focal_length * resize_ratio
         focal_length = float(focal_length)
 
         rgb_resize = self.flip_reshape_crop_pad(rgb_aug, flip_flg, resize_size, crop_size, pad, 0)
@@ -244,15 +245,19 @@ class MultiDataset(Dataset):
         # crop_width = resize_size[1] if resize_size[1] <= cfg.DATASET.CROP_SIZE[1] else cfg.DATASET.CROP_SIZE[1]
         # crop_size = [start_x, start_y, crop_width, crop_height] if 'train' in self.opt.phase else [0, 0, resize_size[1], resize_size[0]]
 
-        # reshape
-        ratio_list = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5]  #
-        if 'train' in self.opt.phase:
-            resize_ratio = ratio_list[np.random.randint(len(ratio_list))]
-        else:
-            resize_ratio = 1.0
+        # # reshape
+        # ratio_list = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5]  #
+        # if 'train' in self.opt.phase:
+        #     resize_ratio = ratio_list[np.random.randint(len(ratio_list))]
+        # else:
+        #     resize_ratio = 1.0
 
-        resize_size = [int(A.shape[0] * resize_ratio + 0.5),
-                       int(A.shape[1] * resize_ratio + 0.5)]  # [height, width]
+        # resize_size = [int(A.shape[0] * resize_ratio + 0.5),
+        #                int(A.shape[1] * resize_ratio + 0.5)]  # [height, width]
+
+        # reshape
+        resize_size = [cfg.DATASET.CROP_SIZE[0], cfg.DATASET.CROP_SIZE[1]]
+        resize_ratio = (cfg.DATASET.CROP_SIZE[0] + cfg.DATASET.CROP_SIZE[1]) / (cropw + croph)
 
         # # pad
         # pad_height = 0 if resize_size[0] > cfg.DATASET.CROP_SIZE[0] else cfg.DATASET.CROP_SIZE[0] - resize_size[0]

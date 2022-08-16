@@ -258,12 +258,14 @@ def main():
     # Validation datasets
     val_datasets = []
     for dataset_name in val_args.dataset_list:
-        val_annos_path = osp.join(val_args.dataroot, dataset_name, 'annotations/val_annotations.json')
+        val_annos_path = osp.join(cfg.ROOT_DIR, val_args.dataroot, dataset_name, 'annotations', 'val_annotations.json')
         if not osp.exists(val_annos_path):
             continue
         with open(val_annos_path, 'r') as f:
-            annos = json.load(f)
-            depth_path_demo = annos[0]['depth_path']
+            anno = json.load(f)[0]
+            if 'depth_path' not in anno:
+                continue
+            depth_path_demo = osp.join(cfg.ROOT_DIR, val_args.dataroot, anno['depth_path'])
             depth_demo = cv2.imread(depth_path_demo, -1)
             if depth_demo is not None:
                 val_datasets.append(dataset_name)
