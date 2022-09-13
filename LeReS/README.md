@@ -112,6 +112,12 @@ pip install --upgrade git+https://github.com/mit-han-lab/torchsparse.git@v1.2.0
 ## BibTeX
 
 ```BibTeX
+@article{yin2022towards,
+  title={Towards Accurate Reconstruction of 3D Scene Shape from A Single Monocular Image},
+  author={Yin, Wei and Zhang, Jianming and Wang, Oliver and Niklaus, Simon and Chen, Simon and Liu, Yifan and Shen, Chunhua},
+  journal={TPAMI},
+  year={2022}
+}
 @inproceedings{Wei2021CVPR,
   title     =  {Learning to Recover 3D Scene Shape from a Single Image},
   author    =  {Wei Yin and Jianming Zhang and Oliver Wang and Simon Niklaus and Long Mai and Simon Chen and Chunhua Shen},
