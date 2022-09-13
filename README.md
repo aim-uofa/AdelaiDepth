@@ -54,7 +54,7 @@ Monocular Video Depth (Boosting Monocular Depth Estimation with Sparse Guided Po
 ```BibTeX
 @article{yin2022towards,
   title={Towards Accurate Reconstruction of 3D Scene Shape from A Single Monocular Image},
-  author={Yin, Wei and Zhang, Jianming and Wang, Oliver and Nicklaus, Simon and Chen, Simon and Liu, Yifan and Shen, Chunhua},
+  author={Yin, Wei and Zhang, Jianming and Wang, Oliver and Niklaus, Simon and Chen, Simon and Liu, Yifan and Shen, Chunhua},
   journal={IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)},
   year={2022}
 }
