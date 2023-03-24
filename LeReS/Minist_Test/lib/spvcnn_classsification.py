@@ -1,6 +1,7 @@
 import torch.nn as nn
 import torchsparse.nn as spnn
-from torchsparse.point_tensor import PointTensor
+from torchsparse.tensor import PointTensor
+
 
 from lib.spvcnn_utils import *
 __all__ = ['SPVCNN_CLASSIFICATION']
@@ -114,7 +115,7 @@ class SPVCNN_CLASSIFICATION(nn.Module):
             ResidualBlock(cs[3], cs[4], ks=3, stride=1, dilation=1),
             ResidualBlock(cs[4], cs[4], ks=3, stride=1, dilation=1),
         )
-        self.avg_pool = spnn.GlobalAveragePooling()
+        self.avg_pool = spnn.GlobalAvgPool()
         self.classifier = nn.Sequential(nn.Linear(cs[4], kwargs['num_classes']))
         self.point_transforms = nn.ModuleList([
             nn.Sequential(
