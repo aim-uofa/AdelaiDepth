@@ -5,7 +5,7 @@ import torch.nn as nn
 
 class MSGIL_NORM_Loss(nn.Module):
     """
-    Our proposed GT normalized Multi-scale Gradient Loss Fuction.
+    Our proposed GT normalized Multi-scale Gradient Loss Function.
     """
     def __init__(self, scale=4, valid_threshold=-1e-8, max_threshold=1e8):
         super(MSGIL_NORM_Loss, self).__init__()
