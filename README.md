@@ -81,9 +81,7 @@ Monocular Video Depth (Boosting Monocular Depth Estimation with Sparse Guided Po
 }
 ```
 
-### Contact
-* Wei Yin <https://yvanyin.net/> 
-* Chunhua Shen <https://cshen.github.io>
+
 
 ## License
 
