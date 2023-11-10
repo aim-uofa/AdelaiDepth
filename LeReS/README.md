@@ -39,8 +39,8 @@ pip install --upgrade git+https://github.com/mit-han-lab/torchsparse.git@v1.2.0
 ## Quick Start (Inference)
 
 1. Download the model weights
-   * [ResNet50 backbone](https://cloudstor.aarnet.edu.au/plus/s/VVQayrMKPlpVkw9)
-   * [ResNeXt101 backbone](https://cloudstor.aarnet.edu.au/plus/s/lTIJF4vrvHCAI31)
+   * [ResNet50 backbone](https://pan.baidu.com/s/17Sf2Ds2Tl4vel8JG7ZYk4Q?pwd=dyfq)
+   * [ResNeXt101 backbone](https://pan.baidu.com/s/1o2oVMiLRu770Fdpa65Pdbw?pwd=g3yi)
 
 2. Prepare data. 
    * Move the downloaded weights to  `LeReS/Minist_Test/` 
@@ -102,7 +102,7 @@ pip install --upgrade git+https://github.com/mit-han-lab/torchsparse.git@v1.2.0
    sh train.sh
    ```
 
-4. Test the network on a benchmark. We provide a sample code for testing on NYU. Please download the NYU testing data [test.mat](https://cloudstor.aarnet.edu.au/plus/s/G2ckXCJX3pvrzRU) for evaluation and move it to `Train/datasets/test.mat`. If you want to test on other benchmarks, you can follow the sample code.
+4. Test the network on a benchmark. We provide a sample code for testing on NYU. Please download the NYU testing data [test.mat](https://pan.baidu.com/s/1i2kPu1w3Hlx04jQIll0mMg?pwd=t748) for evaluation and move it to `Train/datasets/test.mat`. If you want to test on other benchmarks, you can follow the sample code.
    ```
    cd Train/scripts
    sh test.sh
