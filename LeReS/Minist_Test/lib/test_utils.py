@@ -2,8 +2,10 @@ import os
 import numpy as np
 import torch
 from torchsparse import SparseTensor
-from torchsparse.utils import sparse_collate_fn, sparse_quantize
+from torchsparse.utils.collate import sparse_collate_fn
+from torchsparse.utils.quantize import sparse_quantize
 from plyfile import PlyData, PlyElement
+import matplotlib.pyplot as plt
 
 
 def init_image_coor(height, width, u0=None, v0=None):
@@ -35,20 +37,21 @@ def pcd_to_sparsetensor(pcd, mask_valid, voxel_size=0.01, num_points=100000):
     block_ = pcd_valid
     block = np.zeros_like(block_)
     block[:, :3] = block_[:, :3]
-
-    pc_ = np.round(block_[:, :3] / voxel_size)
+    
+    pc_ = block_
     pc_ -= pc_.min(0, keepdims=1)
     feat_ = block
-
+    # print(pc_.shape)
+    
     # transfer point cloud to voxels
-    inds = sparse_quantize(pc_,
-                           feat_,
+    pc, inds = sparse_quantize(pc_,
+                           voxel_size,
                            return_index=True,
-                           return_invs=False)
+                           return_inverse=False)
     if len(inds) > num_points:
         inds = np.random.choice(inds, num_points, replace=False)
-
-    pc = pc_[inds]
+    
+    
     feat = feat_[inds]
     lidar = SparseTensor(feat, pc)
     feed_dict = [{'lidar': lidar}]
@@ -67,19 +70,20 @@ def pcd_uv_to_sparsetensor(pcd, u_u0, v_v0, mask_valid, f= 500.0, voxel_size=0.0
     block[:, :] = block_[:, :]
 
 
-    pc_ = np.round(block_[:, :3] / voxel_size)
+    pc_ = block_[:, :3]
     pc_ -= pc_.min(0, keepdims=1)
     feat_ = block
 
     # transfer point cloud to voxels
-    inds = sparse_quantize(pc_,
-                           feat_,
+    pc, inds = sparse_quantize(pc_,
+                           voxel_size,
                            return_index=True,
-                           return_invs=False)
+                           return_inverse=False)
     if len(inds) > num_points:
         inds = np.random.choice(inds, num_points, replace=False)
 
-    pc = pc_[inds]
+    
+    
     feat = feat_[inds]
     lidar = SparseTensor(feat, pc)
     feed_dict = [{'lidar': lidar}]
