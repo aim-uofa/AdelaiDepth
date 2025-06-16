@@ -18,7 +18,7 @@ AdelaiDepth contains the following algorithms:
 * [Jun. 6, 2021] We have made the training data of DiverseDepth available.
 
 ## Results and Dataset Examples:
-1. 3D Scene Shape
+1. 3D Scene Shape:
   
  You may want to check [this video](http://www.youtube.com/watch?v=UuT5_GK_TWk) which provides a very brief introduction to the work:
 
@@ -38,7 +38,7 @@ AdelaiDepth contains the following algorithms:
 
 ![Depth](./examples/depth.png)
 
-2. DiverseDepth
+2. DiverseDepth:
 
 * Results examples：
 
